@@ -1,11 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-"""
-Documentación de la vista 
-
-    pydoc -w bicicletas
-
-"""
 import Controlador
 from PyQt5 import QtWidgets, QtGui, QtCore
 import sys
@@ -29,14 +21,16 @@ class Vista(QtWidgets.QWidget):
         self.famortiguador_delantero = False
         self.famortiguador_trasero = False
         
+        title = QtWidgets.QLabel("Bike Configurator", self)
+        title.setFont(QtGui.QFont("Arial", 18, QtGui.QFont.Bold))
+
         cad = ("Bienvenido a Bike Configurator!\n"
                "Nos encargaremos de proporcionarte la mejor bicicleta posible adaptada a tus exigencias\n"
                "Los pasos a seguir son sencillos:\n\n"
                "- Introduce el precio máximo que deseas\n"
                "- Selecciona el tipo de bicicleta que quieres\n"
                "- Selecciona opciones extra\n"
-               "Y por último pulsa Configurar\n\n"
-               "- Si da error de presupuesto, introduce un valor mayor\n")
+               "Y por último pulsa Configurar")
         
         self.lbl = QtWidgets.QLabel("Introduce un presupuesto", self)
         self.lbl.setFont(QtGui.QFont("Arial", 14))
@@ -49,7 +43,11 @@ class Vista(QtWidgets.QWidget):
         self.combo.addItem("Road")
         self.combo.addItem("Paseo")
         self.combo.currentTextChanged.connect(self.toggle_amortiguadores)
+        self.combo.currentTextChanged.connect(self.update_precio_range)
         self.combo.setFont(QtGui.QFont("Arial", 12))
+
+        self.precio_range = QtWidgets.QLabel("", self)
+        self.precio_range.setFont(QtGui.QFont("Arial", 12))
 
         self.checkbox_AmortiguadorDelantero = QtWidgets.QCheckBox("Amortiguador Delantero", self)
         self.checkbox_AmortiguadorDelantero.setFont(QtGui.QFont("Arial", 12))
@@ -73,9 +71,11 @@ class Vista(QtWidgets.QWidget):
         self.ExitButton.clicked.connect(self.close)
 
         layout = QtWidgets.QVBoxLayout()
+        layout.addWidget(title)
         layout.addWidget(self.lbl)
         layout.addWidget(self.le)
         layout.addWidget(self.combo)
+        layout.addWidget(self.precio_range)
         layout.addWidget(self.checkbox_AmortiguadorDelantero)
         layout.addWidget(self.checkbox_AmortiguadorTrasero)
         layout.addWidget(self.texto)
@@ -86,6 +86,8 @@ class Vista(QtWidgets.QWidget):
         self.setWindowTitle('Bike Configurator')
         self.setWindowIcon(QtGui.QIcon('icono.jpg'))
         self.setGeometry(100, 100, 800, 600)
+        
+        self.update_precio_range(self.combo.currentText())
         
         self.show()
 
@@ -108,6 +110,17 @@ class Vista(QtWidgets.QWidget):
             self.checkbox_AmortiguadorTrasero.hide()
             self.famortiguador_delantero = False
             self.famortiguador_trasero = False
+
+    def update_precio_range(self, tipo):
+        """
+        Método para actualizar el rango de precios según el tipo de bicicleta
+        """
+        if tipo == "MTB":
+            self.precio_range.setText("Para bicicletas de tipo MTB disponemos de opciones a partir de 380€")
+        elif tipo == "Road":
+            self.precio_range.setText("Para bicicletas de tipo Road disponemos de opciones a partir de 565€")
+        elif tipo == "Paseo":
+            self.precio_range.setText("Para bicicletas de tipo Paseo disponemos de opciones a partir de 455€")
 
     def activacion(self):
         """
