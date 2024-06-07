@@ -1,4 +1,4 @@
-import Controlador
+import Controlador as Controlador
 from PyQt5 import QtWidgets, QtGui, QtCore
 import sys
 

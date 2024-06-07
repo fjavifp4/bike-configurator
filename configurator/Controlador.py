@@ -1,4 +1,4 @@
-import Modelo
+import Modelo as Modelo
 
 def control(precio, tipo, famortiguador_delantero, famortiguador_trasero):
     """

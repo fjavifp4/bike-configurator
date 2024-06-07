@@ -14,12 +14,12 @@ Bike Configurator es una aplicación basada en Python que ayuda a los usuarios a
 1. Clona el repositorio:
     ```bash
     git clone https://github.com/fjavifp4/bike-configurator.git
-    cd bike-configurator
+    cd bike-configurator/configurator
     ```
 
 2. Ejecuta la aplicación:
     ```bash
-    python3 Vista.py
+    python3 App.py
     ```
 
 ## Uso
