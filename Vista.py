@@ -8,7 +8,7 @@ class Vista(QtWidgets.QWidget):
     """
     def __init__(self):
         """
-        Constructor de la clase.
+        Constructor de la clase Vista
         """
         super(Vista, self).__init__()
         
@@ -16,7 +16,7 @@ class Vista(QtWidgets.QWidget):
 
     def initUI(self):
         """
-        Método que prepara e inicia la interfaz de la aplicación
+        Constructor de la UI
         """
         self.famortiguador_delantero = False
         self.famortiguador_trasero = False
@@ -137,9 +137,7 @@ class Vista(QtWidgets.QWidget):
         self.texto.setText(configurado)
 
 def main():
-    """
-    Función main.
-    """
+
     app = QtWidgets.QApplication(sys.argv)
     ex = Vista()
     sys.exit(app.exec_())

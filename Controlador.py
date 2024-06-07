@@ -1,11 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-"""
-Documentación del controlador
-
-    pydoc -w bicicletas
-
-"""
 import Modelo
 
 def control(precio, tipo, famortiguador_delantero, famortiguador_trasero):
